@@ -1,0 +1,14 @@
+= form_tag search_list_attachments_path, :method => 'get', :remote => true do
+  %p
+    = text_field_tag :search_for_files
+  
+  :javascript
+    observeSearchfield('search_for_files', 'file_list', '#{ escape_javascript search_list_attachments_path :project_id => @project.id }')
+
+%hr
+
+= render :partial => 'file_list', :locals => {:issues => @issues}
+
+
+
+

@@ -1,0 +1,6 @@
+# English strings go here for Rails i18n
+en:
+  # my_label: "My label"
+  label_attachments_plural: Attachments
+  author: Author
+  description: Description

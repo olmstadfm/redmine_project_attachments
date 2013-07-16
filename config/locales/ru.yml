@@ -1,0 +1,6 @@
+# Russian strings go here for Rails i18n
+ru:
+  # my_label: "My label"
+  label_attachments_plural: Файлы
+  label_author: Автор
+  label_description: Описание

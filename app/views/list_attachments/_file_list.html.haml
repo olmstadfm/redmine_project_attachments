@@ -1,0 +1,35 @@
+%div#file_list
+  %table.list
+    %thead
+      %tr
+        %th= l(:label_attachment)
+        %th= l(:label_issue)     
+        %th= l(:label_author) 
+        %th= l(:label_description)
+    %tbody
+    - for attachment in @attachments_in_project
+      %tr{ :class => "#{cycle('odd', 'even')}" }
+        %td
+          = link_to_attachment attachment, :class => 'icon icon-attachment', :download => true
+
+          - if attachment.is_text?
+            = link_to image_tag('magnifier.png'), :controller => 'attachments', :action => 'show', :id => attachment, :filename => attachment.filename
+
+          %span.size
+            = number_to_human_size attachment.filesize
+            = link_to image_tag('delete.png'), 
+                      attachment_path(attachment),
+                      :data => {:confirm => l(:text_are_you_sure)},
+                      :method => :delete,
+                      :class => 'delete',
+                      :title => l(:button_delete)
+
+        %td= link_to_issue attachment.container
+
+        %td= attachment.author.name
+          
+        %td
+          - unless attachment.description.blank?
+            = h("#{attachment.description}")
+
+            
