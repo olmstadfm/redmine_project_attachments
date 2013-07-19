@@ -1,8 +1,8 @@
 # Plugin's routes
 # See: http://guides.rubyonrails.org/routing.html
 
-resources :list_attachments do
-  collection do
-        get :search
-  end
+resources :projects do 
+  resources :list_attachments, :only => :index
 end
+
+# get 'projects/:project_id/attachments' => 'list_attachments#index'

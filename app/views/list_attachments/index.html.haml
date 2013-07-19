@@ -1,14 +1,26 @@
-= form_tag search_list_attachments_path, :method => 'get', :remote => true do
-  %p
-    = text_field_tag :search_for_files
+= form_tag project_list_attachments_path, :method => 'get', :remote => true do
+  %span
+    = text_field_tag :search_for_files, params[:q]
   
   :javascript
-    observeSearchfield('search_for_files', 'file_list', '#{ escape_javascript search_list_attachments_path project_id: @project.id }')
+    observeSearchfield( 'search_for_files', 'null', '#{ escape_javascript project_list_attachments_path project_id: @project.id, format: "js", time_period: params[:time_period], created_on: params[:created_on] }')
+    
+  =  hidden_field_tag :q, params[:q]
+
+  %div{style: "float: right;"}
+    = "За период:"
+    %input{ :id => 'created_on', :name => 'created_on', :type => 'text', :size => 10, :onchange => "this.form.submit(); return false;", :value => params['created_on'], :q => params[:q] }
+
+    = calendar_for('created_on')
+    - time_periods.each do |key|
+      = "/"
+      - if params[:time_period] == key
+        %strong
+          = l(:"label_#{key}")
+      - else
+        = link_to l(:"label_#{key}"), params.merge( :time_period => key, :created_on => nil) 
 
 %hr
 
-= render :partial => 'file_list', :locals => {:issues => @issues}
-
-
-
-
+#file_list
+  = render partial: 'file_list'

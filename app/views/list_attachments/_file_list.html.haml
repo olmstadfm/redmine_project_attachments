@@ -1,35 +1,44 @@
-%div#file_list
+- if @attachments_in_project.any?
   %table.list
     %thead
       %tr
-        %th= l(:label_attachment)
-        %th= l(:label_issue)     
-        %th= l(:label_author) 
+        = sort_header_tag('filename', caption: l(:label_attachment), remote: true) 
+        = sort_header_tag('container_id', caption: l(:label_issue), remote: true)
+        = sort_header_tag('author_id', caption: l(:label_author), remote: true)
+        = sort_header_tag('created_on', caption: l(:label_created_on), remote: true)
         %th= l(:label_description)
     %tbody
-    - for attachment in @attachments_in_project
-      %tr{ :class => "#{cycle('odd', 'even')}" }
-        %td
-          = link_to_attachment attachment, :class => 'icon icon-attachment', :download => true
+      - for attachment in @attachments_in_project
+        %tr{ :class => "#{cycle('odd', 'even')}" }
+          %td
+            = link_to_attachment attachment, :class => 'icon icon-attachment', :download => true
 
-          - if attachment.is_text?
-            = link_to image_tag('magnifier.png'), :controller => 'attachments', :action => 'show', :id => attachment, :filename => attachment.filename
+            - if attachment.is_text?
+              = link_to image_tag('magnifier.png'), :controller => 'attachments', :action => 'show', :id => attachment, :filename => attachment.filename
 
-          %span.size
-            = number_to_human_size attachment.filesize
-            = link_to image_tag('delete.png'), 
-                      attachment_path(attachment),
-                      :data => {:confirm => l(:text_are_you_sure)},
-                      :method => :delete,
-                      :class => 'delete',
-                      :title => l(:button_delete)
+            %span.size
+              = number_to_human_size attachment.filesize
+              = link_to image_tag('delete.png'), 
+                        attachment_path(attachment),
+                        :data => {:confirm => l(:text_are_you_sure)},
+                        :method => :delete,
+                        :class => 'delete',
+                        :title => l(:button_delete)
 
-        %td= link_to_issue attachment.container
+          %td= link_to_issue attachment.container
 
-        %td= attachment.author.name
-          
-        %td
-          - unless attachment.description.blank?
-            = h("#{attachment.description}")
+          %td= attachment.author.name
 
-            
+          %td= attachment.created_on.getlocal.strftime("%Y.%m.%d %H:%M:%S")
+
+          %td
+            - unless attachment.description.blank?
+              = h("#{attachment.description}")
+
+  %p.pagination
+    = pagination_links_full @pages, @count
+
+- else
+  %p.nodata
+    = l(:label_no_data)
+

@@ -4,3 +4,7 @@ ru:
   label_attachments_plural: Файлы
   label_author: Автор
   label_description: Описание
+  label_created_on: Создан
+
+  label_last_month: предыдущий месяц
+  label_last_week: предыдущая неделя
