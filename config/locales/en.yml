@@ -4,3 +4,13 @@ en:
   label_attachments_plural: Attachments
   author: Author
   description: Description
+
+  label_created_on: Created on
+
+  link_yesterday: yesterday
+  link_last_week: last week
+  link_this_week: this week
+  link_last_month: last month
+  link_this_month: this month
+  link_last_year: last year
+  link_this_year: this year

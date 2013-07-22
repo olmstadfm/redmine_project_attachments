@@ -6,5 +6,10 @@ ru:
   label_description: Описание
   label_created_on: Создан
 
-  label_last_month: предыдущий месяц
-  label_last_week: предыдущая неделя
+  link_yesterday: вчера
+  link_last_week: предыдущая неделя
+  link_this_week: на этой неделе
+  link_last_month: предыдущий месяц
+  link_this_month: этот месяц
+  link_last_year: прошлый год
+  link_this_year: этот год

@@ -4,7 +4,7 @@
   
   :javascript
     observeSearchfield( 'search_for_files', 'null', '#{ escape_javascript project_list_attachments_path project_id: @project.id, format: "js", time_period: params[:time_period], created_on: params[:created_on] }')
-    
+  
   =  hidden_field_tag :q, params[:q]
 
   %div{style: "float: right;"}
@@ -16,9 +16,9 @@
       = "/"
       - if params[:time_period] == key
         %strong
-          = l(:"label_#{key}")
+          = l(:"link_#{key}")
       - else
-        = link_to l(:"label_#{key}"), params.merge( :time_period => key, :created_on => nil) 
+        = link_to l(:"link_#{key}"), params.merge( :time_period => key, :created_on => nil) 
 
 %hr
 

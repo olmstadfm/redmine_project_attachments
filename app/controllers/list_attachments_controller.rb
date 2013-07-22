@@ -41,7 +41,7 @@ class ListAttachmentsController < ApplicationController
     files = files.order(sort_clause)
 
     @count = files.count
-    @pages, @attachments_in_project = paginate files, per_page: 5
+    @pages, @attachments_in_project = paginate files, per_page: per_page_option
 
 
 
