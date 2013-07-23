@@ -16,9 +16,9 @@
       = "/"
       - if params[:time_period] == key
         %strong
-          = l(:"link_#{key}")
+          = l(:"label_period_#{key}")
       - else
-        = link_to l(:"link_#{key}"), params.merge( :time_period => key, :created_on => nil) 
+        = link_to l(:"label_period_#{key}"), params.merge( :time_period => key, :created_on => nil) 
 
 %hr
 

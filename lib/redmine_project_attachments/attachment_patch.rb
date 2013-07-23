@@ -13,7 +13,7 @@ module ProjectAttachmentsPlugin
           if q.present? && field.present?
             period_start, period_end = case q
                                        when "yesterday"
-                                         [ 1.day.ago.beginning_of_day, 1.day.ago.end_of_day ]
+                                         [1.day.ago.beginning_of_day, 1.day.ago.end_of_day ]
                                        when "today"
                                          [ today.beginning_of_day, today.end_of_day ]
                                        when "last_week"
@@ -28,10 +28,14 @@ module ProjectAttachmentsPlugin
                                          [1.year.ago.beginning_of_year, 1.year.ago.end_of_year ]
                                        when "this_year"
                                          [today.beginning_of_year, today.end_of_year ]
-                                       end
-
-            {:conditions => ["#{field} BETWEEN ? AND ?", period_start , period_end] }
+                                       when "any"
+                                       end            
+            if period_start.present?
+              conditions = ["#{field} BETWEEN ? AND ?", period_start , period_end]
+            end
             
+            {:conditions => conditions}
+
           end
         }
 
