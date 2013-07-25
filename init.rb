@@ -15,16 +15,15 @@ Redmine::Plugin.register :redmine_project_attachments do
        :param => :project_id,
        :if => Proc.new{ |project| User.current.allowed_to?({:controller => :list_attachments, :action => :index}, project) }
 
-  Rails.configuration.to_prepare do
-    [:attachment].each do |cl|
-      require "redmine_project_attachments/#{cl}_patch"
-    end
+end
 
-    [ 
-     [Attachment, ProjectAttachmentsPlugin::AttachmentPatch]
-    ].each do |cl, patch|
-      cl.send(:include, patch) unless cl.included_modules.include? patch
-    end
+Rails.configuration.to_prepare do
+
+  require 'time_period_scope'
+
+  [ 
+   [Attachment, TimePeriodScope]
+  ].each do |cl, patch|
+    cl.send(:include, patch) unless cl.included_modules.include? patch
   end
-
 end

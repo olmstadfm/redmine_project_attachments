@@ -12,7 +12,7 @@
     %input{ :id => 'created_on', :name => 'created_on', :type => 'text', :size => 10, :onchange => "this.form.submit(); return false;", :value => params['created_on'], :q => params[:q] }
 
     = calendar_for('created_on')
-    - time_periods.each do |key|
+    - Attachment.time_periods.each do |key|
       = "/"
       - if params[:time_period] == key
         %strong
