@@ -1,7 +1,7 @@
 # Russian strings go here for Rails i18n
 ru:
   # my_label: "My label"
-  label_attachments_plural: Файлы
+  label_attachments_plural: Вложения
   label_author: Автор
   label_description: Описание
   label_created_on: Создан
@@ -15,3 +15,5 @@ ru:
   label_period_this_month: этот месяц
   label_period_last_year: прошлый год
   label_period_this_year: этот год
+
+  permission_view_project_attachments: Просмотр вложений
