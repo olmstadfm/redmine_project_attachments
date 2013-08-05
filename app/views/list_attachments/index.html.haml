@@ -1,4 +1,5 @@
 = form_tag project_list_attachments_path, :method => 'get', :remote => true do
+  = l(:label_search)
   %span
     = text_field_tag :search_for_files, params[:q]
   
